@@ -1,0 +1,72 @@
+Selectbutton > .button {
+    display: flex;
+    overflow-y:hidden;
+    overflow-x:auto;
+    margin: 20 auto;
+  }
+  
+  .time-filter-btn li{
+    list-style: none;
+    padding-right: 10px;
+     margin-bottom:8px;
+    margin-top:7px;
+    font-size: 18px;
+    display:inline-block; 
+    
+  }
+  
+  .time-filter-btn a:hover{
+    list-style: none;
+    border:3px solid  var(--nav-color);
+  border-radius: 25px;
+  }
+  
+  .time-filter-btn ul{
+    white-space:nowrap;
+    overflow-x:auto;
+    text-align:center;
+  }
+  
+  .time-filter-btn::-webkit-scrollbar{
+    width:8px;
+  }
+
+  .time-filter-btn::-webkit-scrollbar-thumb{
+    background-color:gray;
+    border-radius:10px;
+    background-clip:padding-box;
+    border:4px solid transparent; 
+  }
+  
+  .time-filter{
+    width:100%;
+    margin:0 auto;
+  }
+  
+  .region-filter-btn {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom:10px;
+    padding-bottom:20px;
+    padding-left: 30px;
+    padding-top: 10px;
+    border-bottom:1px solid gray ;
+  }
+  
+  .region-filter-btn a{
+    background-color: white;
+    color: black;
+    border-radius: 25px;
+    border:3px solid rgba(128, 128, 128, 0.596);
+  }
+  
+  .region-filter-btn a:hover{
+    color: black;
+    border-radius: 25px;
+    border:3px solid var(--nav-color);
+  }
+  
+
+  .selected {
+    border: 2px solid blue;
+  }
