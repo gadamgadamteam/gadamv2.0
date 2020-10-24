@@ -1,0 +1,138 @@
+.login_body {
+    background-color:white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 100vh;
+    padding-top:30px;
+    margin-bottom:30px;
+    margin-top:20px;
+    }
+    
+    .logintitle{
+    border: 2px solid rgb(28, 181, 241);
+    font-size:25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:10px;
+    padding-bottom:15px;
+    width:30%;
+    margin-bottom:60px;
+    margin-top:40px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    
+    #un, #pw {
+        text-align: left;
+       padding:10px;
+    }
+    
+    .loginsubtitle {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size:25px;
+    padding-bottom: 20px;;
+    }
+    
+    #un,#pw{
+    margin:10px;
+    }
+    
+    .loginfo_id,.loginfo_pw{
+    margin-bottom:15px;
+    }
+    
+    .login_form {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    }
+    
+    hr {
+    margin: 30px;
+    }
+    
+    
+    .loginfo_idpw {
+    margin: 10px auto;
+    }
+    
+    input[type=text] {
+        width: 100%;
+    background-color: white;
+    border : 2px solid gray;
+        border-radius : 5px;
+    }
+    
+    input[type=password] {
+        width: 100%;
+        height:30px;
+        background-color: white;
+        border-radius : 5px;
+        border : 2px solid gray;
+    }
+    
+    .loginfo_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    }
+    
+    .storedId {
+      display: flex;
+      align-items: center;
+    }
+    
+    .storedId input, p {
+      padding: 10px;
+    }
+    
+    .login_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:10px;
+        width: 100%;
+        height:50px;
+    margin-bottom:15px;
+    }
+    
+    .login_btn input[type=submit]{
+    width: 100%;
+    height:40px;
+    padding: 10px 0px 10px 0px ;
+    margin: 5px 0;
+    box-sizing: border-box;
+    font-size: 20px;
+    background-color: rgb(28, 181, 241);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    }
+    .gojoin-gadam{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom:20px;
+        padding-top:30px;
+    }
+    #notyet{
+        font-size:15px;
+        
+    }
+    #go_to_join {
+        font-size:13px;
+        color: blue;
+    }
+    
+    .snslogin_btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+    }

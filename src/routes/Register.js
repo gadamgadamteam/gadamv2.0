@@ -1,18 +1,84 @@
-import React from 'react';
-import '../css/Register.css'
+import React, { useState} from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {TextField, OutlinedInput, InputAdornment, IconButton} from '@material-ui/core';
+import {Visibility, VisibilityOff} from '@material-ui/icons'
+import { makeStyles } from '@material-ui/core/styles';
 
-const Register = (props) => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing(1),
+  },
+  withoutLabel: {
+    marginTop: theme.spacing(3),
+  },
+  textField: {
+    width: '25ch',
+  },
+}));
+
+const Login = (props) => {
+
+  const classes = useStyles();
+    const [values, setValues] = React.useState({
+      amount: '',
+      password: '',
+      weight: '',
+      weightRange: '',
+      showPassword: false,
+    });
+  
+    const handleChange = (prop) => (event) => {
+      setValues({ ...values, [prop]: event.target.value });
+    };
+
+    const handleClickShowPassword = () => {
+      setValues({ ...values, showPassword: !values.showPassword });
+    };
+  
+    const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+    };
+  
+
   return (
-      <div class="register">
-    <Form>
+      <div class="login" style={{width:"70%", margin:"auto"}}>
+    <Form style={{fontSize:"x-large"}}>
+    <FormGroup>
+        <Label for="name">이름</Label>
+        <TextField id="name" label="이름을 적어주세요" variant="outlined" style={{width:"-webkit-fill-available"}}/>
+    </FormGroup>
       <FormGroup>
-        <Label for="exampleEmail">Email</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="이메일" />
+        <Label for="email">이메일</Label>
+        <TextField id="email" type="email" label="이메일을 적어주세요" variant="outlined" style={{width:"-webkit-fill-available"}}/>
+        {/* <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" /> */}
       </FormGroup>
       <FormGroup>
-        <Label for="examplePassword">Password</Label>
-        <Input type="password" name="password" id="examplePassword" placeholder="패스워드" />
+        <Label for="password">비밀번호</Label>
+        <OutlinedInput
+            id="password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={values.password}
+            onChange={handleChange('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            labelWidth={70}
+          />
+        {/* <TextField id="password" type="password" label="비밀번호를 적어주세요" variant="outlined" style={{width:"-webkit-fill-available"}}/> */}
+        {/* <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" /> */}
       </FormGroup>
       <FormGroup>
         <Label for="exampleSelect">Select</Label>
@@ -79,4 +145,4 @@ const Register = (props) => {
   );
 }
 
-export default Register;
+export default Login;
