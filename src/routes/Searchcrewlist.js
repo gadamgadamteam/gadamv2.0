@@ -8,32 +8,36 @@ import axios from 'axios'
 class Searchcrewlist extends Component {
 
     state = {
-        isLoading: true,
+        isLoading: false, // true
         info: [],
         states: ["모집중", "마감임박", "모집마감"],
     }
 
     getcrewList = async () => {
         const {
-            data: { crew },
+            data: {crew}
         } = await axios.get(`http://127.0.0.1:8000/search/searchword`, {
             params: {
                 searchtype: this.props.match.params.searchtype,
                 searchword: this.props.match.params.searchword
             },
         })
-        console.log(crew)
         this.setState({ info: crew, isLoading: false })
     }
 
     componentDidMount() {
         // 데이터 로딩
+        // this.getcrewList()
+    }
+
+    componentDidUpdate(newProps){
+        // console.log(newProps)
         this.getcrewList()
     }
 
     render() {
         const { isLoading, info, states } = this.state
-        console.log(isLoading)
+        // console.log(info)
         return (
             <div>
                 <Filter />
