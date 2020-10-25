@@ -15,7 +15,7 @@ class Location extends Component {
     render() {
         const { locations } = this.state
         return (
-            <div className='time-filter'>
+            <div className='location-filter' style={{ display:"flex", overflow:"auto"}}>
                     {locations.map((loc) => {
                         return (<Locationbutton loc={loc} setLoc={this.setLoc} />)
                     })}

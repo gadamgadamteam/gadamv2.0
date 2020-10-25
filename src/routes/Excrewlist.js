@@ -31,7 +31,7 @@ class Excrewlist extends Component {
         console.log(info)
 
         return (
-            <div>
+            <div style={{ width:"70%", margin:"auto"}}>
                 <Filter />
                 <div>{isLoading ? 'Loading' : info.map((crew) => {
                     return <Crewinfo

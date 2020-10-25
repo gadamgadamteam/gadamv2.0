@@ -7,11 +7,12 @@ import Register from './routes/Register'
 import Createcrew from './routes/createCrew'
 import Mypage from './routes/Mypage'
 import Extype from './routes/Extype'
-import Crewdetail from './routes/Crewdetail'
+import Detailinfo from './routes/DetailInfo'
 import Crewlist from './routes/Crewlist'
 import Excrewlist from './routes/Excrewlist'
 import Searchcrewlist from './routes/Searchcrewlist'
 import Crewinfo from './component/crew/Crewinfo'
+import Chat from './routes/ChatRoom'
 // import Crew from './component/Crews';
 import Header from './component/header/Header'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -33,6 +34,8 @@ function App() {
           <Route exact path="/crewlist" component={Crewlist} />
           <Route path="/crewlist/:idexercise" component={Excrewlist} />
           <Route path="/searchresult/:searchtype/:searchword" component={Searchcrewlist} />
+          <Route path="/crewdetail/:idcrew" component={Detailinfo} />
+          <Route path="/chat" component={Chat} />
         </Switch>
         {/* </div> */}
       </div>

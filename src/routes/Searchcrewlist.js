@@ -3,6 +3,7 @@ import { useParams, withRouter } from 'react-router-dom'
 import Crewinfo from '../component/crew/Crewinfo'
 import Filter from '../component/filter/Filter'
 import axios from 'axios'
+import {Pagination } from '@material-ui/lab'
 
 // const Profile = ({ match }) =>
 class Searchcrewlist extends Component {
@@ -27,19 +28,19 @@ class Searchcrewlist extends Component {
 
     componentDidMount() {
         // 데이터 로딩
-        // this.getcrewList()
+        this.getcrewList()
     }
 
     componentDidUpdate(newProps){
         // console.log(newProps)
-        this.getcrewList()
+        // this.getcrewList()
     }
 
     render() {
         const { isLoading, info, states } = this.state
         // console.log(info)
         return (
-            <div>
+            <div style={{ width:"70%", margin:"auto"}}>
                 <Filter />
                 <div>{isLoading ? 'Loading' : info.map((crew) => {
                     return <Crewinfo
@@ -50,7 +51,8 @@ class Searchcrewlist extends Component {
                         hashtags={crew.hashtags}
                         state={states[crew.state]} />
                 })}</div>
-            </div>
+                 <Pagination count={20} color="primary" style={{ display:"table", margin:"auto"}}/>
+            </div>            
         )
     }
 }

@@ -1,0 +1,71 @@
+.header_cr {
+    height: 72px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 24px;
+    padding-left: 24px;
+    position: relative;
+    border-bottom: 1px solid rgb(235, 235, 235);
+  }
+  /* Chat containers */
+  .container {
+    display: flex;
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .opponent {
+    display: l;
+    margin: 3px;
+    padding: 3px;
+    font-size: 12px;
+  }
+  
+  .time-right, .time-left {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  /* Darker chat container */
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+    justify-content: flex-end;
+  }
+
+  /* Style time text */
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  /* Style time text */
+  .time-left {
+    color: #999;
+    text-align: left;
+  }
+  
+  .typeBox {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    position: fixed;
+    bottom: 10px;
+    justify-content: center;
+    width: 40%;
+  }
+  
+  .typeBox i {
+    font-size: 25px;
+  }
+  
+  #inputBox {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 15px;
+    width: 60%;
+  }

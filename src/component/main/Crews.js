@@ -6,9 +6,11 @@ import {
     CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import Hashtag from '../crew/Hashtag'
+import { NavLink } from 'react-router-dom'
 
 function Crew({ idcrew, crewname, location, hashtags}) {
     return ( // onclick 으로 해당 detail 볼 수 있게 routing
+        <NavLink to={`/crewdetail/${idcrew}`}>
         <div class="maincard">
             <Card>
                 <CardImg top width="100%" style={{ maxWidth: 300, maxHeight: 150 }} src="https://gadam.s3.ap-northeast-2.amazonaws.com/gadam.png" alt="Card image cap" />
@@ -25,6 +27,7 @@ function Crew({ idcrew, crewname, location, hashtags}) {
                 </CardBody>
             </Card>
         </div>
+        </NavLink>
     )
 }
 

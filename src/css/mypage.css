@@ -1,0 +1,180 @@
+
+.mypage {
+    background-color: white;
+    margin: auto;
+    width: 100%;
+    height:100%;
+    padding-bottom: 60px;
+  }
+
+  .title-m {
+    color: black;
+    margin: 10px;
+    margin-right:20px;
+  }
+  
+  .headline {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    margin-bottom: 0px;
+    width: 100%;
+  }
+  
+  .headline h1 {
+    border-bottom: 5px solid var(--nav-color);
+  }
+  
+  .headline i {
+    margin: 20px;
+    font-size:35px;
+  
+  }
+  #message{
+    color:gray;
+  }
+  
+  #message:hover{
+    color:black;
+  }
+  
+  #idfix{
+    border: 2px solid #7fffd4;
+    padding:10px;
+    border-radius:10px;
+    color:black;
+    margin-right:20px;
+  }
+  
+  #idfix:hover{
+    border: 2px solid #47cba3;
+    color:white;
+    background-color: #47cba3;
+  }
+  .box-slide{
+    display:flex;
+    align-items: center;
+    justify-items: center;
+    margin-bottom:15px;
+    width: 100%;
+  }
+  .boxx{
+    box-shadow: 3px 3px 3px 3px #aaaaaa;
+    padding:8px;
+    padding-top:0px;
+    border-radius:10px;
+    margin:10px;
+    width: 100%;
+    height: 180px;
+    flex-direction: column;
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+  
+  #show,#show2,#show3,#show4{
+    margin-top:10px;
+    color:rgb(71, 71, 71);
+  }
+  #hide,#hide2,#hide3,#hide4{
+    margin-top:10px;
+     color:rgb(71, 71, 71);
+  }
+  .subtitle{
+    margin-bottom:20px;
+    text-align: left;
+    font-size: 20px;
+  }
+  #crewtitle{
+    font-size:18px;
+    margin-top:15px;
+    margin-bottom:10px;
+    flex: 1;
+  }
+  #date-time{
+    font-size:12px;
+    margin-bottom:2px;
+   margin-top:8px;
+   flex: 1;
+  }
+  #place{
+    font-size:12px;
+    margin-top:2px; 
+    margin-bottom:6px;
+    flex: 1;
+  }
+  
+  #reviewbtn,#setting,#detaillbtn{
+    font-size:13px;
+    border-radius: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-top:12px;
+    padding-bottom: 9px;
+    width: 100%;
+    flex: 1;
+  }
+
+  #reviewbtn{
+    background-color:#ffff8b;
+    color:black;
+  }
+  #setting{
+    background-color:#8bd1ff;
+    color:black;
+  }
+  #detaillbtn{
+    background-color:#b4b1b1;
+    color:black;
+  }
+  #deletebtn{
+    font-size:13px;
+    border-radius: 5px;
+    background-color:#ec8f8ffb;
+    color:black;
+    width: 100%;
+    padding-bottom: 5px;
+    padding-top:10px;
+  }
+  
+  #deletebtn:hover{
+    background-color: #d17474fb;
+  }
+  
+  #reviewbtn:hover{
+    background-color: #c9bc1f;
+  }
+  
+  #setting:hover{
+    background-color: #5db1e9;
+  }
+  
+  #detaillbtn:hover{
+    background-color: #b4b1b1;
+  }
+  
+  .far fa-comments {
+    size: 5x;
+  }
+  
+  .idfix{
+    position: absolute;
+    right: 0;
+    margin: 40px
+  }
+  
+  .preview {
+    padding: 18px 32px;
+  }
+  
+  hr {
+    margin: 10px
+  }
+  
+  .cancle_modal_btn {
+    align-content: space-between;
+  }
+  

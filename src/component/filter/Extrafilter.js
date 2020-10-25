@@ -50,7 +50,9 @@ export default function SimpleModal() {
     const body = (
         <div style={modalStyle} className={classes.paper}>
             <h4>크루 구성원 성별</h4>
-            남자/여자/혼성 -> 버튼으로 바꾸기
+            <Button variant="outlined" color="primary">남성</Button>
+            <Button variant="outlined" color="primary">여성</Button>
+            <Button variant="outlined" color="primary">혼성</Button>
             <h4>연령대</h4>
             <Slider
                 defaultValue={20}
@@ -72,7 +74,7 @@ export default function SimpleModal() {
     );
 
     return (
-        <div>
+        <div style={{float:"right"}}>
             <FilterListIcon fontSize="large" onClick={handleOpen} />
             <Modal
                 open={open}

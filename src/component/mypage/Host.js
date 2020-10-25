@@ -4,11 +4,12 @@ import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 function Host({ idcrew, crewname, starttime, location }) {
     return (
-        <Col sm="2">
+        <Col style={{width:"max-content", display:"inline-block"}}>
             <Card body>
                 <CardTitle>{crewname}</CardTitle>
                 <CardText>{location}</CardText>
                 <CardText>{starttime}</CardText>
+                <Button>활동완료</Button>
                 <Button>관리하기</Button>
             </Card>
         </Col>

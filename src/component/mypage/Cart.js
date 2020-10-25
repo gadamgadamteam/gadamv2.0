@@ -4,7 +4,7 @@ import { Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 function Cart({ idcrew, crewname, starttime, location }) {
     return (
-        <Col sm="2">
+        <Col style={{width:"max-content", display:"inline-block"}}>
             <Card body>
                 <CardTitle>{crewname}</CardTitle>
                 <CardText>{location}</CardText>

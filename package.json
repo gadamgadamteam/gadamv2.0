@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
@@ -21,8 +24,10 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
     "react-slideshow-image": "^3.3.0",
+    "react-stars": "^2.2.5",
     "reactjs-tag-input": "^2.0.15",
-    "reactstrap": "^8.6.0"
+    "reactstrap": "^8.6.0",
+    "talkjs": "^0.14.3"
   },
   "scripts": {
     "start": "react-scripts start",

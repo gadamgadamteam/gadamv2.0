@@ -5,6 +5,7 @@ import Cart from '../component/mypage/Cart'
 import Completed from '../component/mypage/Completed'
 import Host from '../component/mypage/Host'
 import Ongoing from '../component/mypage/Ongoing'
+import axios from 'axios'
 
 class Mypage extends React.Component {
     state = {
@@ -13,6 +14,17 @@ class Mypage extends React.Component {
         completes: [],
         Hosts: [],
         Ongoings: [],
+    }
+
+    getOngoingList = async () => {
+        const {
+            data: { crew },
+        } = await axios.get("http://127.0.0.1:8000/mypage/myplan", {
+             params:{ iduser : 1}
+        })
+
+        console.log(crew)
+        this.setState({ Ongoings: crew})
     }
 
     getcartList = async () => {
@@ -27,34 +39,43 @@ class Mypage extends React.Component {
     componentDidMount() {
         // 데이터 로딩
         this.getcartList()
+        this.getOngoingList()
     }
 
     render() {
-        const { isLoading, carts } = this.state;
+        const { isLoading, carts, Ongoings } = this.state;
+        console.log(Ongoings)
         return (
-            <div>
-                <div style={{display:"inline"}}>
+            <div style={{ width: "70%", margin: "auto"}}>
+                <div style={{ display: "flex" }}>
                     <h1>{/* 유저 이름 */} 마이페이지</h1>
-                    <Button outline color="secondary">회원정보수정</Button>{' '}
+                    <Button outline color="secondary" style={{ position: "absolute", right: "20%"  }}>회원정보수정</Button>
                 </div>
-                <div>
-                    <div>
-                    <h3>나의 운동 일정</h3>
-                    <Ongoing />
-                    </div>
-                    <div>
-                    <h3>지난 크루 리뷰</h3>
+                <h3>나의 운동 일정</h3>
+                <div style={{overflow:"auto", display:"inline-flex"}}>
+                    {Ongoings.map((data) => {
+                        console.log(data)
+                        return <Ongoing 
+                        idcrew = {data.idcrew} 
+                        crewname={data.crewname}
+                        starttime={data.starttime} 
+                        location={data.province}
+                        />
+                    })}
+                </div>
+                <h3>지난 크루 리뷰</h3>
+                <div style={{overflow:"auto", display:"inline-flex"}}>
                     <Completed />
-                    </div>
-                    <div>
-                    <h3>내가 개설한 크루</h3>
-                    <Host />
-                    </div>
-                    <div>
-                    <h3>내가 찜한 크루</h3>
-                    <Cart />
-                    </div>
                 </div>
+                <h3>내가 개설한 크루</h3>
+                <div style={{overflow:"auto", display:"inline-flex"}}>
+                    <Host />
+                </div>
+                <h3>내가 찜한 크루</h3>
+                <div style={{overflow:"auto", display:"inline-flex"}}>
+                    <Cart />
+                </div>
+
                 {/* //</div> <div>{isLoading ? 'Loading' : carts.map((cart) => {
             //     return <Cart
             //         key={cart.idcrew}

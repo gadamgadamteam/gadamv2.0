@@ -16,7 +16,7 @@ class Time extends Component {
     render() {
         const { times } = this.state
         return (
-            <div className='time-filter'>
+            <div className='time-filter' style={{ display:"flex", overflow:"auto"}}>
                     {times.map((time) => {
                         return (<Timebutton times={time} setTime={this.setTime} />)
                     })}

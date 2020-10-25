@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { ListGroup, ListGroupItem, Badge, ListGroupItemHeading, ListGroupItemText, Button } from 'reactstrap';
 import Hashtag from './Hashtag'
+import { NavLink } from 'react-router-dom'
 
 function Crewinfo({idcrew, starttime, crewname, hashtags, state}) {
     return (
         <div>
-            <ListGroup horizontal className="w-75 justify-content-between">
+            <ListGroup horizontal className="justify-content-between">
                 {/* <h1>hi +{starttime}</h1> */}
                 <h3 className="justify-content-between">
                     {starttime}
@@ -23,9 +24,11 @@ function Crewinfo({idcrew, starttime, crewname, hashtags, state}) {
                         })}</div>
                     </h5>
                 </div>
+                <NavLink to={`/crewdetail/${idcrew}`} >
                 <Button>
                     {state}
                 </Button>
+                </NavLink>
             </ListGroup>
         </div>
     )

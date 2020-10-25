@@ -29,7 +29,7 @@ class Extype extends Component {
         // console.log(isLoading, exercises)
         
         return (
-            <div>
+            <div style={{ width:"70%", margin:"auto"}}>
                 <Searchbar />
                 <div>{isLoading ? 'Loading' : exercises.map((ext) => {
                     return <Exercisetype

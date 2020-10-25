@@ -33,7 +33,6 @@ class Home extends React.Component {
             <div style={{ textAlign: "center" }}>
                 <Advertisement />
                 <h1>실시간 인기 크루</h1>
-                <h1>조회수 상위 크루</h1>
                 <h1>찜이 많은 크루</h1>
                 <div>{isLoading ? 'Loading' : crews.map((crew) => {
                     return <Crew
