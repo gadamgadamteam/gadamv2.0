@@ -13,7 +13,7 @@ function Advertisement() {
   ]
 
   return (
-      <Carousel>
+      <Carousel style={{width:"-webkit-fill-available"}}>
         <Carousel.Item>
           <img
             className="d-block w-100"
