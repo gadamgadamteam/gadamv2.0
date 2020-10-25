@@ -12,7 +12,7 @@ import Crewlist from './routes/Crewlist'
 import Excrewlist from './routes/Excrewlist'
 import Searchcrewlist from './routes/Searchcrewlist'
 import Crewinfo from './component/crew/Crewinfo'
-import Chat from './routes/ChatRoom'
+import Chat from './routes/Chatroom'
 // import Crew from './component/Crews';
 import Header from './component/header/Header'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
