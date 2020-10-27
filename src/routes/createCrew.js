@@ -50,18 +50,31 @@ class Createcrew extends Component {
     this.setState({ ex: exercise })
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
-    const { crewname, location, starttime, endtime, description, guestnum, 
-      provinceid, exercises_idexercise, gender, age, materials, introduce, hashtag, uploadedImages} = this.state
-      const data = new FormData() 
-      data.append('uploadedImages', uploadedImages)
-      console.log(data)
-      const crewinfo = {
-      crewname, location, starttime, endtime, description, guestnum, province: provinceid,
-      exercises_idexercise, gender, age, materials, introduce, hashtag, uploadedImages:data}
+    const { crewname, location, starttime, endtime, description, guestnum,
+      provinceid, exercises_idexercise, gender, age, materials, introduce, hashtag, uploadedImages } = this.state
+    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+    const data = new FormData()
+    for (let i = 0; i < uploadedImages.length; i++) {
+      data.append('uploadedImages', uploadedImages[i]);
+      console.log(uploadedImages[i])
+    }
+    data.append('crewname', crewname)
+    data.append('location', location)
+    data.append('starttime', starttime)
+    data.append('endtime', endtime)
+    data.append('description', description)
+    data.append('guestnum', guestnum)
+    data.append('province', provinceid)
+    data.append('exercises_idexercise', exercises_idexercise)
+    data.append('gender', gender)
+    data.append('age', age)
+    data.append('materials', materials)
+    data.append('introduce', introduce)
+    data.append('hashtag', hashtag)
     // axios 
-    axios.post('http://localhost:8000/crew/', crewinfo)
+    axios.post("http://localhost:8000/crew/", data, config)
       .then(resp => {
         console.log(resp)
         // if (resp.data === 'success') {
@@ -88,91 +101,91 @@ class Createcrew extends Component {
     return (
       <div style={{ width: "70%", margin: "auto" }}>
         <Form style={{ display: "grid" }} onSubmit={this.handleSubmit}>
-            <TextField
-              required
-              id="outlined-required"
-              label="크루 이름"
-              placeholder="크루 이름을 입력해주세요"
-              variant="outlined"
-              onChange={event => {
-                const { value } = event.target;
-                this.setState({ crewname: value });
-              }}
-            />
-            <input type="file" name="FileName"
-              onChange={(event) => {
-                const { files } = event.target;
-                console.log(event.target.value)
-                console.log(files)
-                this.setState({ uploadedImages: files });
-              }} multiple/>
-            <Autocomplete
-              id="combo-box-demo"
-              options={ex}
-              getOptionLabel={(option) => option.type}
-              renderInput={(params) => <TextField {...params} label="운동 종목" variant="outlined" />}
-              onChange={(event, value) => {
-                console.log(value.idexercise)
-                this.setState({ exercises_idexercise: value.idexercise });
-              }}
-            />
-            <Input type="select" name="select" id="exampleSelect"
-              onChange={event => {
-                const { selectedIndex } = event.target.options
-                this.setState({ gender: selectedIndex });
-                console.log(this.state.gender)
-              }}>
-              <option id="1">여성</option>
-              <option id="2">남성</option>
-              <option id="3">혼성</option>
-            </Input>
-            <Input type="select" name="select" id="exampleSelect"
-              onChange={event => {
-                const { selectedIndex } = event.target.options
-                this.setState({ provinceid: selectedIndex });
-                console.log(this.state.provinceid)
-              }}>
-              {province.map((data, i) => <option id={i}>{data}</option>)}
-            </Input>
-            <TextField
-              required
-              id="outlined-required"
-              label="장소"
-              placeholder="장소를 입력해주세요"
-              variant="outlined"
-              onChange={event => {
-                const { value } = event.target
-                this.setState({ location: value });
-              }}
-            />
-            <TextField
-              id="datetime-local"
-              label="시작 시간"
-              type="datetime-local"
-              defaultValue="2017-05-24T10:30"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={event => {
-                const { value } = event.target
-                this.setState({ starttime: value });
-              }}
-            />
-            <TextField
-              id="datetime-local"
-              label="종료 시간"
-              type="datetime-local"
-              defaultValue="2017-05-24T10:30"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={event => {
-                const { value } = event.target
-                this.setState({ endtime: value });
-              }}
-            />
+          <TextField
+            required
+            id="outlined-required"
+            label="크루 이름"
+            placeholder="크루 이름을 입력해주세요"
+            variant="outlined"
+            onChange={event => {
+              const { value } = event.target;
+              this.setState({ crewname: value });
+            }}
+          />
+          <input type="file" name="FileName"
+            onChange={(event) => {
+              const { files } = event.target;
+              console.log(event.target.value)
+              console.log(files)
+              this.setState({ uploadedImages: files });
+            }} multiple />
+          <Autocomplete
+            id="combo-box-demo"
+            options={ex}
+            getOptionLabel={(option) => option.type}
+            renderInput={(params) => <TextField {...params} label="운동 종목" variant="outlined" />}
+            onChange={(event, value) => {
+              console.log(value.idexercise)
+              this.setState({ exercises_idexercise: value.idexercise });
+            }}
+          />
+          <Input type="select" name="select" id="exampleSelect"
+            onChange={event => {
+              const { selectedIndex } = event.target.options
+              this.setState({ gender: selectedIndex });
+              console.log(this.state.gender)
+            }}>
+            <option id="1">여성</option>
+            <option id="2">남성</option>
+            <option id="3">혼성</option>
+          </Input>
+          <Input type="select" name="select" id="exampleSelect"
+            onChange={event => {
+              const { selectedIndex } = event.target.options
+              this.setState({ provinceid: selectedIndex });
+              console.log(this.state.provinceid)
+            }}>
+            {province.map((data, i) => <option id={i}>{data}</option>)}
+          </Input>
+          <TextField
+            required
+            id="outlined-required"
+            label="장소"
+            placeholder="장소를 입력해주세요"
+            variant="outlined"
+            onChange={event => {
+              const { value } = event.target
+              this.setState({ location: value });
+            }}
+          />
+          <TextField
+            id="datetime-local"
+            label="시작 시간"
+            type="datetime-local"
+            defaultValue="2017-05-24T10:30"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={event => {
+              const { value } = event.target
+              this.setState({ starttime: value });
+            }}
+          />
+          <TextField
+            id="datetime-local"
+            label="종료 시간"
+            type="datetime-local"
+            defaultValue="2017-05-24T10:30"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={event => {
+              const { value } = event.target
+              this.setState({ endtime: value });
+            }}
+          />
           <TextField
             id="outlined-number"
             label="참여 인원"

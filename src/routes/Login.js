@@ -141,7 +141,7 @@ class Login extends React.Component {
               onChange={this.handlePasswordChange.bind(this)} />
           </div>
           <div className="login_btn">
-            <input type="submit" Value="LOG IN" />
+            <input type="submit" value="LOG IN" />
           </div>
           <div className="loginfo_bottom">
             <div className='storedId'>

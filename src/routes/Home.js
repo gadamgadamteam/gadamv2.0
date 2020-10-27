@@ -42,6 +42,7 @@ class Home extends React.Component {
                         crewname={crew.crewname}
                         starttime={crew.starttime}
                         state={crew.state}
+                        imgs={crew.crew_images}
                         hashtags={crew.hashtags} />
                 })}</div>
                 <h1 style={{textAlign:"left"}}>찜이 많은 크루
@@ -54,6 +55,7 @@ class Home extends React.Component {
                         crewname={crew.crewname}
                         starttime={crew.starttime}
                         state={crew.state}
+                        imgs={crew.crew_images}
                         hashtags={crew.hashtags} />
                 })}</div>
                 <NavLink to='/createcrew'>
