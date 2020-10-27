@@ -4,14 +4,29 @@ import { useParams, withRouter } from 'react-router-dom'
 import Crewinfo from '../component/crew/Crewinfo'
 import Filter from '../component/filter/Filter'
 import axios from 'axios'
+import { Pagination } from '@material-ui/lab'
 
 // const Profile = ({ match }) =>
 class Excrewlist extends Component {
 
-    state = {
-        isLoading: true,
-        info: [],
-        states: ["모집중", "마감임박", "모집마감"],
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoading: true,
+            info: [],
+            states: ["모집중", "마감임박", "모집마감"],
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = async (event, value) => {
+        console.log(value)
+        const {
+            data: { crew },
+        } = await axios.get(`http://127.0.0.1:8000/crew/${this.props.match.params.idexercise}`, {
+            params: { page: value }
+        })
+        this.setState({ info: crew})
     }
 
     getexcrewList = async () => {
@@ -28,7 +43,6 @@ class Excrewlist extends Component {
 
     render() {
         const { isLoading, info, states } = this.state
-        console.log(info)
 
         return (
             <div style={{ width:"70%", margin:"auto"}}>
@@ -42,6 +56,7 @@ class Excrewlist extends Component {
                         hashtags={crew.hashtags}
                         state={states[crew.state]} />
                 })}</div>
+                <Pagination count={20} color="primary" onChange={this.handleChange} style={{ display: "table", margin: "auto" }} />
             </div>
         )
     }
