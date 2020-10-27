@@ -235,6 +235,7 @@ class Createcrew extends Component {
               this.setState({ materials: value });
             }}
           />
+          <h5>연령대</h5>
           <Slider
             defaultValue={20}
             aria-labelledby="discrete-slider"
