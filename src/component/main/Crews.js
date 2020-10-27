@@ -14,7 +14,7 @@ function Crew({ idcrew, crewname, location, hashtags, imgs}) {
         <NavLink to={`/crewdetail/${idcrew}`}>
         <div class="maincard" style={{width:"max-content"}}>
             <Card>
-                {(imgs.length > 0) ? <CardImg top width="100%" style={{ minWidth:300, maxWidth: 300, maxHeight: 150 }} src={imgs[0].url} alt="Card image cap" />
+                {(imgs.length > 0) ? <CardImg top width="100%" style={{ minWidth:250, maxWidth: 300, maxHeight: 150 }} src={imgs[0].url} alt="Card image cap" />
                 : <CardImg top width="100%" style={{ maxWidth: 300, maxHeight: 150 }} src="https://gadam.s3.ap-northeast-2.amazonaws.com/gadam.png" alt="Card image cap" />}
                 <CardBody>
                     <CardTitle>{crewname}</CardTitle>

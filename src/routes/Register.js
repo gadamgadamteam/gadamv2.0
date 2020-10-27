@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/Register.css'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import {NavLink} from 'react-router-dom'
 // import { Button, FormGroup} from '@material-ui/core'
 
 const Register = (props) => {
@@ -41,7 +42,9 @@ const Register = (props) => {
           <Label for="examplePassword">전화번호</Label>
           <Input type="password" name="password" id="examplePassword" placeholder="010-0000-0000" />
         </FormGroup>
-        <Button>제출하기</Button>
+        <NavLink to="/">
+          <Button>제출하기</Button>
+        </NavLink>
       </Form>
     </div>
   );

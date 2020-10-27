@@ -26,7 +26,7 @@ class Header extends Component {
             dropdown: ["제목", "내용", "해쉬태그"],
             searchval: '',
             //   type: '',  // 검색조건의 type,
-            user: localStorage.getItem('currentUser')
+            user: JSON.parse(localStorage.getItem("user"))
         }
         this.handleLogout = this.handleLogout.bind(this);
     }
@@ -61,7 +61,7 @@ class Header extends Component {
                     <div style={{ textAlign: "right" }}>
                         {user ? (
                             <div style={{ display: "inline-flex" }}>
-                                <h3 style={{ margin: 20, color: "black" }}>{user}</h3>
+                                <h3 style={{ margin: 20, color: "black" }}>{user[0]}님 환영합니다!</h3>
                                 {/* <NavLink to="/"> */}
                                     <Tooltip title="Add" placement="top-end">
                                         <Button onClick={this.handleLogout.bind(this)}>로그아웃</Button>

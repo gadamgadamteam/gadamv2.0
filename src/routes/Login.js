@@ -99,9 +99,9 @@ class Login extends React.Component {
       password: ""; // please don't do this in real code
     }
 
-    function saveCurrentUser(user: IUser): void {
-      localStorage.setItem('currentUser', JSON.stringify(user));
-    }
+    // function saveCurrentUser(user: IUser): void {
+    //   localStorage.setItem('currentUser', JSON.stringify(user));
+    // }
 
     function getCurrentUser(): IUser {
       var userStr = localStorage.getItem('currentUser');
@@ -112,8 +112,11 @@ class Login extends React.Component {
       }
     }
 
-    var user = { username: this.state.username, password: this.state.password, iduser: this.state.user };
-    saveCurrentUser(user);
+    var user = []
+    user[0] = this.state.username
+    user[1] = this.state.iduser
+    localStorage.setItem("user", JSON.stringify(user));
+    // saveCurrentUser(user);
 
     // elsewhere...
     var savedUser = getCurrentUser();

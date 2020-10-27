@@ -30,7 +30,7 @@ class Message extends React.Component {
         name: "Sebastian",
         email: "demo@talkjs.com",
         photoUrl: "https://demo.talkjs.com/img/sebastian.jpg",
-        welcomeMessage: "Hey, how can I help?",
+        welcomeMessage: "무엇을 도와드릴까요?!",
         role: "booker"
       });
 
