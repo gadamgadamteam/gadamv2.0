@@ -72,17 +72,18 @@ class Login extends React.Component {
     }
   };
 
-  login(event) {
+  login = async (event) => {
     event.preventDefault();
     const request = {
       email: document.getElementById('exampleInputEmail1').value,
       password: document.getElementById('exampleInputPassword1').value
     };
 
-    axios.post('http://localhost:8000/auth/login', request)
+    await axios.post('http://localhost:8000/auth/login', request)
       .then(resp => {
         console.log(resp)
-        if (resp.data === 'success') {
+        if (resp.data.message === 'success') {
+          this.setState({user: resp.data.iduser})
           history.push("/");
           return resp.data;
         } else {
@@ -111,7 +112,7 @@ class Login extends React.Component {
       }
     }
 
-    var user = { username: this.state.username, password: this.state.password };
+    var user = { username: this.state.username, password: this.state.password, iduser: this.state.user };
     saveCurrentUser(user);
 
     // elsewhere...

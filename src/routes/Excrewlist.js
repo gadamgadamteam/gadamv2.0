@@ -32,7 +32,9 @@ class Excrewlist extends Component {
     getexcrewList = async () => {
         const {
             data: { crew },
-        } = await axios.get(`http://127.0.0.1:8000/crew/${this.props.match.params.idexercise}`)
+        } = await axios.get(`http://127.0.0.1:8000/crew/${this.props.match.params.idexercise}`,{
+            params: { page: 0 }
+        })
         this.setState({ info: crew, isLoading: false })
     }
 
