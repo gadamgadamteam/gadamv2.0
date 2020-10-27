@@ -51,7 +51,7 @@ class Mypage extends React.Component {
     getcartList = async () => {
         const {
             data: { crewinfo },
-        } = await axios.get("http://127.0.0.1:8000/cart", {
+        } = await axios.get("http://127.0.0.1:8000/mypage/cartcrew", {
             params: { iduser: 1 }
         })
         this.setState({ carts: crewinfo, isLoading: false })
@@ -82,7 +82,7 @@ class Mypage extends React.Component {
                             idcrew={data.idcrew}
                             crewname={data.crewname}
                             starttime={data.starttime}
-                            location={data.province}
+                            location={data.location}
                         />
                     })}
                 </div>
@@ -94,7 +94,7 @@ class Mypage extends React.Component {
                             idcrew={data.idcrew}
                             crewname={data.crewname}
                             starttime={data.starttime}
-                            location={data.province}
+                            location={data.location}
                         />
                     })}
                 </div>
@@ -106,7 +106,7 @@ class Mypage extends React.Component {
                             idcrew={data.idcrew}
                             crewname={data.crewname}
                             starttime={data.starttime}
-                            location={data.province}
+                            location={data.location}
                         />
                     })}
                 </div>
@@ -118,7 +118,7 @@ class Mypage extends React.Component {
                             idcrew={data.idcrew}
                             crewname={data.crewname}
                             starttime={data.starttime}
-                            location={data.province}
+                            location={data.location}
                         />
                     })}
                 </div>
