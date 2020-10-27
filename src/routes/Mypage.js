@@ -70,7 +70,7 @@ class Mypage extends React.Component {
         console.log(Ongoings)
         return (
             <div style={{ width: "70%", margin: "auto" }}>
-                <div style={{ display: "flex" }}>
+                <div >
                     <h1>{/* 유저 이름 */} 마이페이지</h1>
                     <Button outline color="secondary" style={{ position: "absolute", right: "20%" }}>회원정보수정</Button>
                 </div>
@@ -122,14 +122,6 @@ class Mypage extends React.Component {
                         />
                     })}
                 </div>
-
-                {/* //</div> <div>{isLoading ? 'Loading' : carts.map((cart) => {
-            //     return <Cart
-            //         key={cart.idcrew}
-            //         idcrew={cart.idcrew}
-            //         crewname={cart.crewname}
-            //         starttime={cart.starttime} />
-            // })}</div>) */}
             </div>
         )
     }

@@ -57,7 +57,7 @@ class Home extends React.Component {
                         hashtags={crew.hashtags} />
                 })}</div>
                 <NavLink to='/createcrew'>
-                    <Fab variant="extended" style={{ position: "fixed", right: "50px", bottom: "50px" }}>
+                    <Fab variant="extended" style={{ position: "fixed", right: "50px", bottom: "50px", backgroundColor:"yellowgreen" }}>
                         <FitnessCenterIcon />
                      크루 모집하기
                 </Fab>

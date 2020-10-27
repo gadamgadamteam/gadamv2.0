@@ -5,8 +5,16 @@ import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { Tooltip } from '@material-ui/core';
 import PersistentDrawerLeft from './Drawer';
-import blue from '@material-ui/core/colors/blue';
+import axios from 'axios';
+import { createBrowserHistory } from 'history';
 
+const history = createBrowserHistory({
+    forceRefresh: true
+});
+const location = history.location;
+history.listen((location, action) => {
+    console.log(action, location.pathname, location.state);
+})
 
 class Header extends Component {
 
@@ -17,8 +25,10 @@ class Header extends Component {
             selectedEvents: "Choose Your Event",
             dropdown: ["제목", "내용", "해쉬태그"],
             searchval: '',
-            //   type: '',  // 검색조건의 type
+            //   type: '',  // 검색조건의 type,
+            user: localStorage.getItem('currentUser')
         }
+        this.handleLogout = this.handleLogout.bind(this);
     }
 
     handleClick = (type) => {
@@ -32,28 +42,47 @@ class Header extends Component {
         this.setState({ searchval: event.target.value })
     }
 
+    handleLogout(event) {
+        localStorage.clear();
+        this.state.user = "";
+        history.push("/");
+    };
+
+
     render() {
+        const { user } = this.state
         return (
             <Navbar bg="primrary" variant="light">
                 <PersistentDrawerLeft />
-                {/* <Nav> */}
                 <NavLink to="/">
                     <h1 style={{ margin: 20, color: "black", width: "max-content" }}>가담<br />가담</h1>
-                    {/* <img src ="http s://gad am.s3.ap-northeast-2.amazonaws.com/assets/gadamlogo.png" alt="btnImages" style={{ width: 100, height: 100 }} /> */}
                 </ NavLink>
-                {/* </Nav> */}
                 <div style={{ width: "100%" }}>
                     <div style={{ textAlign: "right" }}>
-                        <NavLink to="/login">
-                            <Tooltip title="Add" placement="top-end">
-                                <Button>로그인</Button>
-                            </Tooltip>
-                        </NavLink>
-                        <NavLink to="/register">
-                            <Tooltip title="Add" placement="top-end">
-                                <Button>회원가입</Button>
-                            </Tooltip>
-                        </NavLink>
+                        {user ? (
+                            <div style={{ display: "inline-flex" }}>
+                                <h3 style={{ margin: 20, color: "black" }}>{user}</h3>
+                                {/* <NavLink to="/"> */}
+                                    <Tooltip title="Add" placement="top-end">
+                                        <Button onClick={this.handleLogout.bind(this)}>로그아웃</Button>
+                                    </Tooltip>
+                                {/* </NavLink> */}
+                            </div>
+                        ) : (
+                                <div>
+                                    <NavLink to="/login">
+                                        <Tooltip title="Add" placement="top-end">
+                                            <Button>로그인</Button>
+                                        </Tooltip>
+                                    </NavLink>
+                                    <NavLink to="/register">
+                                        <Tooltip title="Add" placement="top-end">
+                                            <Button>회원가입</Button>
+                                        </Tooltip>
+                                    </NavLink>
+                                </div>
+                            )}
+
                     </div>
                     <div>
                         <Form style={{ display: "inline-flex", width: "70%" }}>
