@@ -8,10 +8,24 @@ import { Pagination } from '@material-ui/lab'
 // const Profile = ({ match }) =>
 class Crewlist extends Component {
 
-    state = {
-        isLoading: true,
-        info: [],
-        states: ["모집중", "마감임박", "모집마감"],
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoading: true,
+            info: [],
+            states: ["모집중", "마감임박", "모집마감"],
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = async (event, value) => {
+        console.log(value)
+        const {
+            data: { crew },
+        } = await axios.get(`http://127.0.0.1:8000/crew/`, {
+            params: { page: value }
+        })
+        this.setState({ info: crew})
     }
 
     getcrewList = async () => {
@@ -28,11 +42,11 @@ class Crewlist extends Component {
 
     render() {
         const { isLoading, info, states } = this.state
-        
+
         return (
-            <div style={{ width:"70%", margin:"auto"}}>
+            <div style={{ width: "70%", margin: "auto" }}>
                 <Filter />
-                <div>{ isLoading ? 'Loading' : info.map((crew) => {
+                <div>{isLoading ? 'Loading' : info.map((crew) => {
                     return <Crewinfo
                         key={crew.idcrew}
                         idcrew={crew.idcrew}
@@ -41,7 +55,7 @@ class Crewlist extends Component {
                         hashtags={crew.hashtags}
                         state={states[crew.state]} />
                 })}</div>
-                 <Pagination count={20} color="primary"  style={{ display:"table", margin:"auto"}}/>
+                <Pagination count={20} color="primary" onChange={this.handleChange} style={{ display: "table", margin: "auto" }} />
             </div>
         )
     }

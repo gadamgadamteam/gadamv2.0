@@ -7,6 +7,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ExpandMoreIcon } from '@material-ui/icons/ExpandMore';
 import { Autocomplete } from '@material-ui/lab'
 import Kakaomap from '../component/map/Kakaomap'
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory({
+  forceRefresh: true
+});
+const location = history.location;
+history.listen((location, action) => {
+  console.log(action, location.pathname, location.state);
+})
 
 // add province and gender
 class Createcrew extends Component {
@@ -15,10 +24,23 @@ class Createcrew extends Component {
     super(props);
     this.state = {
       tags: [], value: new Date(), onChange: new Date(), ex: [],
-      province: ["서울", "경기", "인천", "대전", "부산", "대구", "광주", "전주", "울산", "나주"]
+      province: ["서울", "경기", "인천", "대전", "부산", "대구", "광주", "전주", "울산", "나주"],
+      crewname: '',
+      location: '',
+      starttime: '',
+      endtime: '',
+      description: '',
+      guestnum: 0,
+      provinceid: '',
+      exercises_idexercise: '',
+      gender: '',
+      age: '',
+      materials: '',
+      introduce: '',
+      hashtag: '',
+      uploadedImages: []
     }
-    this.onTagsChanged = this.onTagsChanged.bind(this);
-    // const [value, onChange] = useState([new Date(), new Date()]);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getexList = async () => {
@@ -26,12 +48,32 @@ class Createcrew extends Component {
       data: { exercise }
     } = await axios.get("http://127.0.0.1:8000/exercise/")
     this.setState({ ex: exercise })
-    // axios.get("http://127.0.0.1:8000/exercise/")
   }
 
-  onTagsChanged(tags) {
-    this.setState({ tags })
-    console.log(tags)
+  handleSubmit(event) {
+    event.preventDefault();
+    const { crewname, location, starttime, endtime, description, guestnum, 
+      provinceid, exercises_idexercise, gender, age, materials, introduce, hashtag, uploadedImages} = this.state
+      const data = new FormData() 
+      data.append('uploadedImages', uploadedImages)
+      console.log(data)
+      const crewinfo = {
+      crewname, location, starttime, endtime, description, guestnum, province: provinceid,
+      exercises_idexercise, gender, age, materials, introduce, hashtag, uploadedImages:data}
+    // axios 
+    axios.post('http://localhost:8000/crew/', crewinfo)
+      .then(resp => {
+        console.log(resp)
+        // if (resp.data === 'success') {
+        //   history.push("/");
+        //   return resp.data;
+        // } else {
+        //   alert(resp.data);
+        // }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   componentDidMount() {
@@ -42,33 +84,54 @@ class Createcrew extends Component {
   render() {
     const { tags, value, onChange, ex, province } = this.state
     const classes = this.props;
-    // const classes = useStyles();
 
     return (
       <div style={{ width: "70%", margin: "auto" }}>
-        <Form style={{display:"grid"}}>
-          <form className={classes.container} noValidate>
+        <Form style={{ display: "grid" }} onSubmit={this.handleSubmit}>
             <TextField
               required
               id="outlined-required"
               label="크루 이름"
               placeholder="크루 이름을 입력해주세요"
               variant="outlined"
+              onChange={event => {
+                const { value } = event.target;
+                this.setState({ crewname: value });
+              }}
             />
-            <input type="file" name="FileName" multiple />
+            <input type="file" name="FileName"
+              onChange={(event) => {
+                const { files } = event.target;
+                console.log(event.target.value)
+                console.log(files)
+                this.setState({ uploadedImages: files });
+              }} multiple/>
             <Autocomplete
               id="combo-box-demo"
               options={ex}
               getOptionLabel={(option) => option.type}
-              style={{ width: 300 }}
               renderInput={(params) => <TextField {...params} label="운동 종목" variant="outlined" />}
+              onChange={(event, value) => {
+                console.log(value.idexercise)
+                this.setState({ exercises_idexercise: value.idexercise });
+              }}
             />
-            <Input type="select" name="select" id="exampleSelect">
-              <option>여성</option>
-              <option>남성</option>
-              <option>혼성</option>
+            <Input type="select" name="select" id="exampleSelect"
+              onChange={event => {
+                const { selectedIndex } = event.target.options
+                this.setState({ gender: selectedIndex });
+                console.log(this.state.gender)
+              }}>
+              <option id="1">여성</option>
+              <option id="2">남성</option>
+              <option id="3">혼성</option>
             </Input>
-            <Input type="select" name="select" id="exampleSelect">
+            <Input type="select" name="select" id="exampleSelect"
+              onChange={event => {
+                const { selectedIndex } = event.target.options
+                this.setState({ provinceid: selectedIndex });
+                console.log(this.state.provinceid)
+              }}>
               {province.map((data, i) => <option id={i}>{data}</option>)}
             </Input>
             <TextField
@@ -77,6 +140,10 @@ class Createcrew extends Component {
               label="장소"
               placeholder="장소를 입력해주세요"
               variant="outlined"
+              onChange={event => {
+                const { value } = event.target
+                this.setState({ location: value });
+              }}
             />
             <TextField
               id="datetime-local"
@@ -86,6 +153,10 @@ class Createcrew extends Component {
               className={classes.textField}
               InputLabelProps={{
                 shrink: true,
+              }}
+              onChange={event => {
+                const { value } = event.target
+                this.setState({ starttime: value });
               }}
             />
             <TextField
@@ -97,8 +168,11 @@ class Createcrew extends Component {
               InputLabelProps={{
                 shrink: true,
               }}
+              onChange={event => {
+                const { value } = event.target
+                this.setState({ endtime: value });
+              }}
             />
-          </form>
           <TextField
             id="outlined-number"
             label="참여 인원"
@@ -108,6 +182,10 @@ class Createcrew extends Component {
               shrink: true,
             }}
             variant="outlined"
+            onChange={event => {
+              const { value } = event.target
+              this.setState({ guestnum: value });
+            }}
           />
           <TextField
             id="outlined-multiline-static"
@@ -116,6 +194,10 @@ class Createcrew extends Component {
             rows={6}
             placeholder="크루 상세 설명을 적어주세요"
             variant="outlined"
+            onChange={event => {
+              const { value } = event.target
+              this.setState({ description: value });
+            }}
           />
           <TextField
             id="outlined-multiline-static"
@@ -124,6 +206,10 @@ class Createcrew extends Component {
             rows={6}
             placeholder="크루 상세 설명을 적어주세요"
             variant="outlined"
+            onChange={event => {
+              const { value } = event.target
+              this.setState({ introduce: value });
+            }}
           />
           <TextField
             required
@@ -131,6 +217,10 @@ class Createcrew extends Component {
             label="준비물"
             placeholder="준비물을 입력해주세요"
             variant="outlined"
+            onChange={event => {
+              const { value } = event.target
+              this.setState({ materials: value });
+            }}
           />
           <Slider
             defaultValue={20}
@@ -140,6 +230,12 @@ class Createcrew extends Component {
             marks
             min={10}
             max={60}
+            onChange={(event, val) => {
+              // 여기 값 제대로 안뜸
+              console.log(val)
+              this.setState({ age: val }); // 나누기 10  - 1 ?
+              console.log(this.state.age)
+            }}
           />
           <TextField
             required
@@ -147,8 +243,12 @@ class Createcrew extends Component {
             label="해쉬태그"
             placeholder="해쉬태그 입력해주세요"
             variant="outlined"
+            onChange={event => {
+              const { value } = event.target
+              this.setState({ hashtag: value });
+            }}
           />
-          <Button>생성하기</Button>
+          <input type="submit" value="Submit" />
         </Form>
       </div>
     )
